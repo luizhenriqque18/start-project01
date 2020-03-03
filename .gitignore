@@ -31,3 +31,6 @@ target/
 ### YARN ###
 node_modules/
 yarn.lock
+
+### POSTGRES DATABASE ###
+./database/data/*
