@@ -1,4 +1,4 @@
-package com.example.startproject01.swagger;
+package br.com.icts.uqms.swagger;
 
 import org.springframework.context.annotation.Bean;
 
@@ -22,3 +22,4 @@ public class SwaggerConfig {
                 .description("Documentação da API de acesso aos endpoints com Swagger").version("1.0").build();
     }
 }
+
