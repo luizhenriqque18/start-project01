@@ -1,10 +1,10 @@
-package com.example.startproject01;
+package br.com.icts.uqms;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class StartProject01ApplicationTests {
+class UqmsApplicationTests {
 
 	@Test
 	void contextLoads() {
