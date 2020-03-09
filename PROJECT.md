@@ -68,18 +68,18 @@ grandes também será necessário ter uma nova branch, fora isso elas podem ser 
 O nome da *branch* será estruturada da forma:`
 
 ```
-<tipo>-<atividade>
+<tipo>-<atividade>-<colaborador>
 ```
 
 #### Exemplos
 ```
-git branch feature-crud-user
+git branch feature-crud-user-lucas
 ```
 ```
-git branch fix-user-controller
+git branch fix-user-controller-luiz
 ```
 ```
-git branch docs-user-manual
+git branch docs-user-manual-jonathas
 ```
 
 ### Pull Request
