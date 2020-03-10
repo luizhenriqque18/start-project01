@@ -1,4 +1,4 @@
-package br.com.icts.uqms.config;
+package br.com.icts.uqms.config.telegram;
 
 import javax.annotation.PostConstruct;
 

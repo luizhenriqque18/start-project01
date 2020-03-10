@@ -3,7 +3,7 @@ package br.com.icts.uqms;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.telegram.telegrambots.ApiContextInitializer;
-import br.com.icts.uqms.config.TelegramBot;
+import br.com.icts.uqms.config.telegram.TelegramBot;
 
 @SpringBootApplication
 public class UqmsApplication {
