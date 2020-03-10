@@ -1,4 +1,4 @@
-package br.com.icts.uqms.swagger;
+package br.com.icts.uqms.config.swagger;
 
 import org.springframework.context.annotation.Bean;
 
