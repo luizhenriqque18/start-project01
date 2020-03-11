@@ -60,6 +60,8 @@ public class WorkstationService {
         Page<Workstation> workstations = null;
         if(search == null) {
             workstations = repository.findAll(pagination);
+        }else{
+            workstations = repository.findByNameContaining(search, pagination);
         }
 
         return workstations;

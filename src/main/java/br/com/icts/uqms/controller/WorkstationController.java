@@ -64,7 +64,7 @@ public class WorkstationController {
 
     @GetMapping
     public Page<WorkstationDTO> find(@RequestParam(required = false) String search,
-            @PageableDefault(sort = "id", direction = Direction.DESC, page = 0, size = 10) Pageable pagination) { // buscar todos os elementos (com paginação)
+            @PageableDefault(sort = "id", direction = Direction.DESC, page = 0, size = 10) Pageable pagination) {
 
         Page<Workstation> workstations = service.find(search, pagination);
 
