@@ -31,40 +31,40 @@ import br.com.icts.uqms.service.WorkstationService;
 public class WorkstationController {
 
     @Autowired
-    private WorkstationService workstationService;
+    private WorkstationService service;
 
     @PostMapping
     public ResponseEntity<WorkstationDTO> create(@RequestBody @Valid WorkstationFormDTO form ) {
-        Workstation workstation = workstationService.create(form);
+        Workstation workstation = service.create(form);
 
         return new ResponseEntity<>(new WorkstationDTO(workstation), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<WorkstationDTO> update(@PathVariable Long id, @RequestBody @Valid WorkstationFormDTO form) {
-        Workstation workstation = workstationService.update(id, form);
+        Workstation workstation = service.update(id, form);
 
         if(workstation == null) {
-            return ResponseEntity.notFound().build();
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
-        return ResponseEntity.ok(new WorkstationDTO(workstation));
+        return new ResponseEntity<>(new WorkstationDTO(workstation), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {
-        Boolean deleted = workstationService.delete(id);
+        Boolean deleted = service.delete(id);
 
         if(deleted) {
-            return ResponseEntity.ok().build();
+            return new ResponseEntity<>(null, HttpStatus.OK);
         }
-        return ResponseEntity.notFound().build();
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
     @GetMapping
     public Page<WorkstationDTO> find(@RequestParam(required = false) String search,
             @PageableDefault(sort = "id", direction = Direction.DESC, page = 0, size = 10) Pageable pagination) { // buscar todos os elementos (com paginação)
 
-        Page<Workstation> workstations = workstationService.find(search, pagination);
+        Page<Workstation> workstations = service.find(search, pagination);
 
         return WorkstationDTO.convert(workstations);
     }
@@ -72,7 +72,7 @@ public class WorkstationController {
     @GetMapping("/{id}")
     public ResponseEntity<WorkstationDTO> findById(@PathVariable Long id) { // buscar elemento por outra
 
-        return workstationService.findById(id);
+        return service.findById(id);
 
     }
 

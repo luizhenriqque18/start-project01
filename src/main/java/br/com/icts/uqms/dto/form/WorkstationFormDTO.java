@@ -12,7 +12,6 @@ public class WorkstationFormDTO {
     private String name;
 
     @NotNull
-    @NotEmpty
     private Boolean critic;
 
     /**

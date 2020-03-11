@@ -19,37 +19,35 @@ import br.com.icts.uqms.repository.WorkstationRepository;
 public class WorkstationService {
 
     @Autowired
-    private WorkstationRepository workstationRepository;
+    private WorkstationRepository repository;
 
-	public Workstation create(@Valid WorkstationFormDTO form) {
+	public Workstation create(WorkstationFormDTO form) {
         Workstation workstation = form.convert();
 
-        return workstationRepository.save(workstation);
+        return repository.save(workstation);
 	}
 
-	public Workstation update(Long id, @Valid WorkstationFormDTO form) {
-        Optional<Workstation> optional =  workstationRepository.findById(id);
+	public Workstation update(Long id, WorkstationFormDTO form) {
+        Optional<Workstation> optional =  repository.findById(id);
 
         if(optional.isPresent()) {
-            return workstationRepository.save(form.convert(id));
-
-        } else {
-            return null;
+            return repository.save(form.convert(id));
         }
+        return null;
 	}
 
 	public Boolean delete(Long id) {
-        Optional<Workstation> optional = workstationRepository.findById(id);
+        Optional<Workstation> optional = repository.findById(id);
 
         if(optional.isPresent()){
-            workstationRepository.deleteById(id);
+            repository.deleteById(id);
             return true;
         }
         return false;
 	}
 
 	public ResponseEntity<WorkstationDTO> findById(Long id) {
-        Optional<Workstation> workstation = workstationRepository.findById(id);
+        Optional<Workstation> workstation = repository.findById(id);
 
         if(workstation.isPresent()) {
             return ResponseEntity.ok(new WorkstationDTO(workstation.get()));
@@ -61,11 +59,9 @@ public class WorkstationService {
 	public Page<Workstation> find(String search, Pageable pagination) {
         Page<Workstation> workstations = null;
         if(search == null) {
-            workstations = workstationRepository.findAll(pagination);
+            workstations = repository.findAll(pagination);
         }
 
         return workstations;
 	}
-
-    // this class connect with repository
 }
