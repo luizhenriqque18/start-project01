@@ -1,5 +1,7 @@
 package br.com.icts.uqms.dto.form;
 
+import java.lang.reflect.Field;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -8,8 +10,8 @@ import br.com.icts.uqms.validations.handler.Existing;
 
 public class WorkstationFormDTO {
 
-    @NotNull
-    @NotEmpty
+    @NotNull(groups = Existing.class)
+    @NotEmpty(groups = Existing.class)
     private String name;
 
     @NotNull(groups = Existing.class)
@@ -48,8 +50,20 @@ public class WorkstationFormDTO {
     }
 
     public Workstation convert(Workstation workstation) {
-        if (this.critic == null) {
-            this.critic = workstation.getCritic();
+        for (Field f : this.getClass().getDeclaredFields()) {
+            try {
+                if (f.get(this) == null) {
+                    try {
+                        Field new_field = workstation.getClass().getDeclaredField(f.getName());
+                        new_field.setAccessible(true);
+                        f.set(this, new_field.get(workstation));
+                    } catch(NoSuchFieldException e) {
+                        System.out.println(e);
+                    }
+                }
+            } catch (IllegalAccessException e){
+                System.out.println(e);
+            }
         }
         return new Workstation(workstation.getId(), this.name, this.critic);
     }
