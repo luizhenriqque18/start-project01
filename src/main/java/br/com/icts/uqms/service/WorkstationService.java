@@ -46,14 +46,13 @@ public class WorkstationService {
         return false;
 	}
 
-	public ResponseEntity<WorkstationDTO> findById(Long id) {
+	public Workstation findById(Long id) {
         Optional<Workstation> workstation = repository.findById(id);
 
         if(workstation.isPresent()) {
-            return ResponseEntity.ok(new WorkstationDTO(workstation.get()));
+            return workstation.get();
         }
-
-        return ResponseEntity.notFound().build();
+        return  null;
 	}
 
 	public Page<Workstation> find(String search, Pageable pagination) {

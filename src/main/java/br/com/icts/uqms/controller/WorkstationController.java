@@ -72,10 +72,13 @@ public class WorkstationController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<WorkstationDTO> findById(@PathVariable Long id) { // buscar elemento por outra
+    public ResponseEntity<WorkstationDTO> findById(@PathVariable Long id) {
+        Workstation workstation = service.findById(id);
 
-        return service.findById(id);
-
+        if (workstation == null) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(new WorkstationDTO(workstation), HttpStatus.OK);
     }
 
 

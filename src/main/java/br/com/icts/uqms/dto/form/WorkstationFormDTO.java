@@ -65,6 +65,7 @@ public class WorkstationFormDTO {
                 System.out.println(e);
             }
         }
+
         return new Workstation(workstation.getId(), this.name, this.critic);
     }
 
