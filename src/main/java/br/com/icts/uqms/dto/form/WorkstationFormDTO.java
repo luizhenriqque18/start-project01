@@ -4,6 +4,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import br.com.icts.uqms.domain.Workstation;
+import br.com.icts.uqms.validations.handler.Existing;
 
 public class WorkstationFormDTO {
 
@@ -11,7 +12,7 @@ public class WorkstationFormDTO {
     @NotEmpty
     private String name;
 
-    @NotNull
+    @NotNull(groups = Existing.class)
     private Boolean critic;
 
     /**
@@ -46,8 +47,11 @@ public class WorkstationFormDTO {
         return new Workstation(this.name, this.critic);
     }
 
-    public Workstation convert(Long id) {
-        return new Workstation(id, this.name, this.critic);
+    public Workstation convert(Workstation workstation) {
+        if (this.critic == null) {
+            this.critic = workstation.getCritic();
+        }
+        return new Workstation(workstation.getId(), this.name, this.critic);
     }
 
 }

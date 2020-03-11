@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +26,7 @@ import br.com.icts.uqms.domain.Workstation;
 import br.com.icts.uqms.dto.WorkstationDTO;
 import br.com.icts.uqms.dto.form.WorkstationFormDTO;
 import br.com.icts.uqms.service.WorkstationService;
+import br.com.icts.uqms.validations.handler.Existing;
 
 @RestController
 @RequestMapping("/register/workstation")
@@ -34,7 +36,7 @@ public class WorkstationController {
     private WorkstationService service;
 
     @PostMapping
-    public ResponseEntity<WorkstationDTO> create(@RequestBody @Valid WorkstationFormDTO form ) {
+    public ResponseEntity<WorkstationDTO> create(@RequestBody @Validated(Existing.class) WorkstationFormDTO form ) {
         Workstation workstation = service.create(form);
 
         return new ResponseEntity<>(new WorkstationDTO(workstation), HttpStatus.CREATED);

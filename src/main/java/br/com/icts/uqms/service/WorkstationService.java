@@ -28,10 +28,10 @@ public class WorkstationService {
 	}
 
 	public Workstation update(Long id, WorkstationFormDTO form) {
-        Optional<Workstation> optional =  repository.findById(id);
+        Optional<Workstation> optional = repository.findById(id);
 
         if(optional.isPresent()) {
-            return repository.save(form.convert(id));
+            return repository.save(form.convert(optional.get()));
         }
         return null;
 	}
