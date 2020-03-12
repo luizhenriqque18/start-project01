@@ -57,7 +57,7 @@ public class WorkstationController {
         Boolean deleted = service.delete(id);
 
         if(deleted) {
-            return new ResponseEntity<>(null, HttpStatus.OK);
+            return new ResponseEntity<>(deleted, HttpStatus.OK);
         }
         return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
