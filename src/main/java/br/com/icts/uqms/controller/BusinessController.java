@@ -52,13 +52,13 @@ public class BusinessController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Boolean> delete(@PathVariable Long id) {
     	
-    	boolean result = service.delete(id);
+    	boolean delete = service.delete(id);
     	
-    	if(!result) {
-    		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    	if(delete) {
+    		return new ResponseEntity<>(delete, HttpStatus.OK);
     	}
     	
-    	return new ResponseEntity<>(result, HttpStatus.OK);
+    	return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
     @GetMapping
