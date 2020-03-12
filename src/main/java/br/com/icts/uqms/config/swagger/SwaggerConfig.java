@@ -13,12 +13,12 @@ public class SwaggerConfig {
 	@Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2).select()
-                .apis(RequestHandlerSelectors.basePackage("com.example.lojavirtual")).paths(PathSelectors.any()).build()
+                .apis(RequestHandlerSelectors.basePackage("br.com.icts.uqms")).paths(PathSelectors.any()).build()
                 .apiInfo(apiInfo());
     }
 
     private ApiInfo apiInfo() {
-        return new ApiInfoBuilder().title("Swagger LojaVirtual API")
+        return new ApiInfoBuilder().title("UNICOBA - UQMS API")
                 .description("Documentação da API de acesso aos endpoints com Swagger").version("1.0").build();
     }
 }
